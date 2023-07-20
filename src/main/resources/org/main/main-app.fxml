@@ -1,13 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" styleClass="container" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.Controller">
+   <children>
+      <HBox fx:id="header" alignment="CENTER" prefHeight="80.0" prefWidth="400.0" styleClass="header">
+         <children>
+            <Label fx:id="menuButton" alignment="CENTER" prefHeight="80.0" prefWidth="60.0" styleClass="menuButton" HBox.hgrow="ALWAYS" />
+            <Label fx:id="title" alignment="CENTER" prefHeight="80.0" prefWidth="280.0" styleClass="title" text="title" HBox.hgrow="ALWAYS" />
+            <AnchorPane prefHeight="80.0" prefWidth="60.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Circle fill="DODGERBLUE" layoutX="30.0" layoutY="40.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" styleClass="clockFace" />
+                  <Rectangle fx:id="secondHand" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" layoutX="28.0" layoutY="20.0" stroke="BLACK" strokeType="INSIDE" styleClass="secondHand" width="4.0" />
+                  <Rectangle fx:id="hourHand" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="14.0" layoutX="28.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" styleClass="hourHand" width="4.0" />
+               </children>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </AnchorPane>
+         </children></HBox>
+      <VBox prefWidth="600.0" VBox.vgrow="ALWAYS">
+         <children>
+            <ListView fx:id="taskList" styleClass="listView" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </ListView>
+            <HBox prefHeight="30.0" prefWidth="200.0">
+               <children>
+                  <HBox prefHeight="30.0" styleClass="yesBox">
+                     <children>
+                        <Label fx:id="yesNum" alignment="CENTER" prefHeight="30.0" text="0" textFill="WHITE" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets right="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox prefHeight="30.0" styleClass="noBox">
+                     <children>
+                        <Label fx:id="noNum" alignment="CENTER" prefHeight="30.0" text="0" textFill="WHITE" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets right="5.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="40.0" style="-fx-background-color: #383838; -fx-background-radius: 10;">
+         <children>
+            <AnchorPane prefHeight="60.0" prefWidth="30.0" style="-fx-background-color: #383838;">
+               <children>
+                  <Circle fill="DODGERBLUE" layoutX="16.0" layoutY="14.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" styleClass="checkOut" />
+               </children>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" top="10.0" />
+               </HBox.margin>
+            </AnchorPane>
+            <TextField fx:id="textField" onKeyPressed="#takeText" prefHeight="40.0" prefWidth="320.0" styleClass="textField" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets left="10.0" right="5.0" />
+               </HBox.margin></TextField>
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>

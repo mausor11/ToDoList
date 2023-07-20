@@ -1,0 +1,114 @@
+.container {
+    -fx-background-color: #232323;
+}
+.menuButton {
+    -fx-alignment: center;
+    -fx-font-size: 25px;
+    -fx-text-fill: #FFB600;
+}
+.clockFace {
+    -fx-fill: transparent;
+    -fx-stroke-width: 4px;
+    -fx-stroke: #FFB600;
+}
+
+.secondHand {
+    -fx-fill: #FFB600;
+    -fx-stroke-width: 0;
+    -fx-background-radius: 10;
+}
+.hourHand {
+    -fx-fill: #b48715;
+    -fx-stroke-width: 0;
+    -fx-background-radius: 10;
+}
+.title {
+    -fx-text-fill: #FFB600;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+.checkOut {
+    -fx-stroke: #FFB600;
+    -fx-fill: transparent;
+    -fx-stroke-width: 2px;
+    -fx-stroke-type: outside;
+}
+.checkIn {
+    -fx-fill: #FFB600;
+}
+.textField {
+    -fx-background-color: #383838;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+.taskTable {
+    -fx-background-color: #383838;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-pref-width: 286px;
+    -fx-pref-height: 40px;
+    -fx-background-radius: 0 10 10 0;
+}
+.taskBox {
+    -fx-background-color: #383838;
+    -fx-background-radius: 10;
+    -fx-pref-height: 40px;
+}
+.yesCheck {
+    -fx-background-color: #326932;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+    -fx-background-radius: 5px;
+}
+.yesBox {
+    -fx-background-color: #326932;
+    -fx-background-radius: 5px;
+}
+.noCheck {
+    -fx-background-color: #693232;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+    -fx-background-radius: 5px;
+}
+.noBox {
+    -fx-background-color: #693232;
+    -fx-background-radius: 5px;
+}
+.listView {
+    -fx-background-color: #232323;
+}
+.listView .list-cell {
+    -fx-background-color: #232323;
+}
+.listView .list-view {
+    -fx-background-color: #232323;
+}
+/*.listView .scroll-bar:vertical, .listView .scroll-bar:vertical .decrement-arrow, .listView .scroll-bar:vertical .increment-arrow, .listView .scroll-bar:vertical .decrement-button, .listView .scroll-bar:vertical .increment-button {*/
+/*    -fx-pref-width: 0;*/
+/*    -fx-pref-height: 0;*/
+/*}*/
+/*.listView .scroll-bar:vertical .thumb {*/
+/*    -fx-background-color: rgba(255, 0, 0, 0.2);*/
+/*    -fx-background-radius: 1000;*/
+/*    -fx-pref-width: 12;*/
+/*    -fx-pref-height: 12;*/
+/*}*/
+/*.scrollBar {*/
+/*    -fx-background-color: #232323;*/
+/*    -fx-pref-width: 10px;*/
+/*}*/
+.listView .scroll-bar {
+    -fx-background-color: #232323;
+    -fx-pref-width: 10px;
+}
+.listView .scroll-bar .increment-arrow, .decrement-arrow {
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+}
+.listView .scroll-bar .thumb {
+    -fx-background-color: rgba(180, 135, 21, 0.2);
+}

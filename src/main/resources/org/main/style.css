@@ -33,6 +33,12 @@
     -fx-stroke-width: 2px;
     -fx-stroke-type: outside;
 }
+.cross {
+    -fx-fill: #FFB600;
+    -fx-stroke-width: 0px;
+    -fx-stroke-type: outside;
+
+}
 .checkIn {
     -fx-fill: #FFB600;
 }
@@ -67,7 +73,7 @@
     -fx-background-radius: 5px;
 }
 .noCheck {
-    -fx-background-color: #693232;
+    -fx-background-color: #8c4242;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 14px;
@@ -75,7 +81,7 @@
     -fx-background-radius: 5px;
 }
 .noBox {
-    -fx-background-color: #693232;
+    -fx-background-color: #8c4242;
     -fx-background-radius: 5px;
 }
 .listView {

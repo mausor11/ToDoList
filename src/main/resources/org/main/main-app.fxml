@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
@@ -37,11 +38,19 @@
             </ListView>
             <HBox prefHeight="30.0" prefWidth="200.0">
                <children>
-                  <HBox prefHeight="30.0" styleClass="yesBox">
+                  <HBox fx:id="doneBox" onMouseClicked="#showDone" prefHeight="30.0" styleClass="yesBox">
                      <children>
+                        <Label fx:id="yesNum1" alignment="CENTER" prefHeight="30.0" rotate="180.0" text="▼" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin>
+                        </Label>
                         <Label fx:id="yesNum" alignment="CENTER" prefHeight="30.0" text="0" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <HBox.margin>
-                              <Insets left="5.0" />
+                              <Insets />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="14.0" />
@@ -55,11 +64,19 @@
                         <Insets right="5.0" />
                      </padding>
                   </HBox>
-                  <HBox prefHeight="30.0" styleClass="noBox">
+                  <HBox fx:id="waitingBox" onMouseClicked="#showWaiting" prefHeight="30.0" styleClass="noBox">
                      <children>
+                        <Label fx:id="noNum1" alignment="CENTER" prefHeight="30.0" rotate="180.0" text="▲" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin>
+                        </Label>
                         <Label fx:id="noNum" alignment="CENTER" prefHeight="30.0" text="0" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <HBox.margin>
-                              <Insets left="5.0" />
+                              <Insets />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="14.0" />
@@ -84,7 +101,13 @@
          <children>
             <AnchorPane prefHeight="60.0" prefWidth="30.0" style="-fx-background-color: #383838;">
                <children>
-                  <Circle fill="DODGERBLUE" layoutX="16.0" layoutY="14.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" styleClass="checkOut" />
+                  <Circle fx:id="checkCircle" fill="DODGERBLUE" layoutX="15.0" layoutY="12.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" styleClass="checkOut" />
+                  <Group fx:id="checkCross" layoutX="14.0" layoutY="2.0" styleClass="groupCross">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" stroke="BLACK" strokeType="INSIDE" styleClass="cross" width="2.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" styleClass="cross" width="2.0" />
+                     </children>
+                  </Group>
                </children>
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" top="10.0" />

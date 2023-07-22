@@ -6,7 +6,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.util.Objects;
-
 public class Main extends Application {
     public static void main(String[] args) {
         launch();
@@ -18,7 +17,6 @@ public class Main extends Application {
         stage.setMinHeight(500);
         stage.setWidth(400);
         stage.setHeight(500);
-
         Scene scene = new Scene(new FXMLLoader(getClass().getResource("main-app.fxml")).load());
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm());
         stage.setScene(scene);

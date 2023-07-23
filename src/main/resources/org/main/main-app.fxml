@@ -16,7 +16,13 @@
    <children>
       <HBox fx:id="header" alignment="CENTER" prefHeight="80.0" prefWidth="400.0" styleClass="header">
          <children>
-            <Label fx:id="menuButton" alignment="CENTER" prefHeight="80.0" prefWidth="60.0" styleClass="menuButton" HBox.hgrow="ALWAYS" />
+            <Label fx:id="menuButton" alignment="CENTER" styleClass="menuButton" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets left="7.0" right="7.0" />
+               </padding></Label>
             <Label fx:id="title" alignment="CENTER" prefHeight="80.0" prefWidth="280.0" styleClass="title" text="title" HBox.hgrow="ALWAYS" />
             <AnchorPane prefHeight="80.0" prefWidth="60.0" HBox.hgrow="ALWAYS">
                <children>

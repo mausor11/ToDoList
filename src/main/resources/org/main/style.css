@@ -5,6 +5,10 @@
     -fx-alignment: center;
     -fx-font-size: 25px;
     -fx-text-fill: #FFB600;
+    -fx-background-radius: 5;
+}
+.menuButton:hover {
+    -fx-background-color: #3f3f3f;
 }
 .clockFace {
     -fx-fill: transparent;

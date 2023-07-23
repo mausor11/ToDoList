@@ -12,17 +12,25 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" styleClass="container" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.Controller">
+<VBox fx:id="container" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" styleClass="container" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.Controller">
    <children>
       <HBox fx:id="header" alignment="CENTER" prefHeight="80.0" prefWidth="400.0" styleClass="header">
          <children>
-            <Label fx:id="menuButton" alignment="CENTER" styleClass="menuButton" HBox.hgrow="ALWAYS">
+            <AnchorPane>
+               <children>
+                  <Label fx:id="menuButton" alignment="CENTER" layoutY="15.0" onMouseClicked="#showMenu" styleClass="menuButton" text="☰">
+                     <padding>
+                        <Insets left="7.0" right="7.0" />
+                     </padding>
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+               </children>
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
-               <padding>
-                  <Insets left="7.0" right="7.0" />
-               </padding></Label>
+            </AnchorPane>
             <Label fx:id="title" alignment="CENTER" prefHeight="80.0" prefWidth="280.0" styleClass="title" text="title" HBox.hgrow="ALWAYS" />
             <AnchorPane prefHeight="80.0" prefWidth="60.0" HBox.hgrow="ALWAYS">
                <children>

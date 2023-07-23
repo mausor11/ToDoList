@@ -6,12 +6,17 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.control.*;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.Effect;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -19,13 +24,15 @@ import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Controller {
-
+    @FXML
+    VBox container;
     @FXML
     HBox doneBox;
     @FXML
@@ -65,10 +72,17 @@ public class Controller {
     int waitNum = waitingTasks.size();
     private boolean doneIsClicked = false;
     private boolean waitingIsClicked = true;
-    public void initialize() {
+    public void initialize() throws IOException {
         menuButton.setText("☰");
         header.widthProperty().addListener((observable, oldValue, newValue) -> {
             title.setPrefWidth(newValue.doubleValue() - 120);
+        });
+        container.heightProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                MenuSingleton.getMenu().setPrefHeight(newValue.doubleValue());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
         LocalTime now = LocalTime.now();
         Rotate minuteRotate = new Rotate(0, 2, 20);
@@ -104,6 +118,8 @@ public class Controller {
             HBox task = task(s);
             taskList.getItems().add(task);
         }
+
+
 
     }
     private Timeline createRotateTimeline(Duration duration, int startAngle, Rotate rotate) {
@@ -266,6 +282,20 @@ public class Controller {
             doneBox.setStyle("-fx-background-color: #326932");
         }
 
+    }
+
+    public void showMenu(MouseEvent mouseEvent) throws IOException {
+
+        BoxBlur boxBlur = new BoxBlur();
+        boxBlur.setWidth(10);
+        boxBlur.setHeight(10);
+        boxBlur.setIterations(1);
+
+        ColorAdjust colorAdjust = new ColorAdjust();
+        colorAdjust.setBrightness(-0.2);
+        boxBlur.setInput(colorAdjust);
+        MainViewInstance.getView().setEffect(boxBlur);
+            AppInstance.getApp().getChildren().add(MenuSingleton.getMenu());
     }
 }
 

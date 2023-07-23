@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="menuApp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="250.0" styleClass="menuApp" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.MenuController">
+   <children>
+      <Label fx:id="menuButtonOn" alignment="CENTER" onMouseClicked="#closeMenu" styleClass="menuButtonOn" text="☰">
+         <padding>
+            <Insets left="7.0" right="7.0" />
+         </padding>
+         <font>
+            <Font size="25.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="11.0" top="15.0" />
+         </VBox.margin>
+      </Label>
+      <ListView VBox.vgrow="ALWAYS">
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </ListView>
+   </children>
+</VBox>

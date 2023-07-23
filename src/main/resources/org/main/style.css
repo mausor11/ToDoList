@@ -8,7 +8,21 @@
     -fx-background-radius: 5;
 }
 .menuButton:hover {
-    -fx-background-color: #3f3f3f;
+    -fx-background-color: #383838;
+
+}
+.menuButtonOn {
+    -fx-alignment: center;
+    -fx-font-size: 25px;
+    -fx-text-fill: #FFB600;
+    -fx-background-radius: 5;
+}
+.menuButtonOn:hover {
+    -fx-background-color: #383838;
+
+}
+.menuApp {
+    -fx-background-color: #232323;
 }
 .clockFace {
     -fx-fill: transparent;

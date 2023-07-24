@@ -65,6 +65,11 @@
     -fx-text-fill: white;
     -fx-font-size: 14px;
 }
+.menuTextField {
+    -fx-background-color: #383838;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+}
 .taskTable {
     -fx-background-color: #383838;
     -fx-text-fill: white;
@@ -73,7 +78,19 @@
     -fx-pref-height: 40px;
     -fx-background-radius: 0 10 10 0;
 }
+.listTable {
+    -fx-background-color: #383838;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-pref-height: 40px;
+    -fx-background-radius: 0 10 10 0;
+}
 .taskBox {
+    -fx-background-color: #383838;
+    -fx-background-radius: 10;
+    -fx-pref-height: 40px;
+}
+.listBox {
     -fx-background-color: #383838;
     -fx-background-radius: 10;
     -fx-pref-height: 40px;
@@ -111,20 +128,6 @@
 .listView .list-view {
     -fx-background-color: #232323;
 }
-/*.listView .scroll-bar:vertical, .listView .scroll-bar:vertical .decrement-arrow, .listView .scroll-bar:vertical .increment-arrow, .listView .scroll-bar:vertical .decrement-button, .listView .scroll-bar:vertical .increment-button {*/
-/*    -fx-pref-width: 0;*/
-/*    -fx-pref-height: 0;*/
-/*}*/
-/*.listView .scroll-bar:vertical .thumb {*/
-/*    -fx-background-color: rgba(255, 0, 0, 0.2);*/
-/*    -fx-background-radius: 1000;*/
-/*    -fx-pref-width: 12;*/
-/*    -fx-pref-height: 12;*/
-/*}*/
-/*.scrollBar {*/
-/*    -fx-background-color: #232323;*/
-/*    -fx-pref-width: 10px;*/
-/*}*/
 .listView .scroll-bar {
     -fx-background-color: #232323;
     -fx-pref-width: 10px;
@@ -134,5 +137,25 @@
     -fx-pref-height: 0;
 }
 .listView .scroll-bar .thumb {
+    -fx-background-color: rgba(180, 135, 21, 0.2);
+}
+.menuList {
+    -fx-background-color: #232323;
+}
+.menuList .list-cell {
+    -fx-background-color: #232323;
+}
+.menuList .list-view {
+    -fx-background-color: #232323;
+}
+.menuList .scroll-bar {
+    -fx-background-color: #232323;
+    -fx-pref-width: 10px;
+}
+.menuList .scroll-bar .increment-arrow, .decrement-arrow {
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+}
+.menuList .scroll-bar .thumb {
     -fx-background-color: rgba(180, 135, 21, 0.2);
 }

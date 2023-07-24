@@ -38,6 +38,15 @@ public class DataBase {
             throw new RuntimeException(e);
         }
     }
+    public void createNewList(String list) {
+        String sql = "CREATE TABLE " + list + "(id_list INT PRIMARY KEY, task TEXT(100), done INT DEFAULT 0)";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public void doneTask(String doneTask) {
         String sql = "UPDATE toDoList SET done = '1' WHERE task = \'" + doneTask + "'";
         try {
@@ -100,8 +109,20 @@ public class DataBase {
             throw new RuntimeException(e);
         }
     }
+    public ArrayList<String> getAllTables() {
+        String sql = "SELECT * FROM information_schema.tables";
+        try (ResultSet rs = connection.getMetaData().getTables(null, null, null, null)) {
+            ArrayList<String> tables = new ArrayList<>();
+            while (rs.next()) {
+                tables.add(rs.getString("TABLE_NAME"));
+            }
+            return tables;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public static void main(String[] args) {
         DataBase dataBase = new DataBase();
-        dataBase.deleteAll();
+        dataBase.getAllTables();
     }
 }

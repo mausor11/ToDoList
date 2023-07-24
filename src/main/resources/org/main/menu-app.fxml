@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <VBox fx:id="menuApp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="250.0" styleClass="menuApp" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.MenuController">
@@ -19,10 +24,35 @@
             <Insets left="11.0" top="15.0" />
          </VBox.margin>
       </Label>
-      <ListView VBox.vgrow="ALWAYS">
+      <ListView fx:id="listList" styleClass="menuList" VBox.vgrow="ALWAYS">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
       </ListView>
+      <HBox alignment="CENTER_LEFT" prefHeight="30.0" style="-fx-background-color: #383838; -fx-background-radius: 10;">
+         <children>
+            <AnchorPane prefHeight="60.0" prefWidth="30.0" style="-fx-background-color: #383838;">
+               <children>
+                  <Group fx:id="checkCross" layoutX="12.0" layoutY="1.0" styleClass="groupCross">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="cross" width="2.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="15.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" styleClass="cross" width="2.0" />
+                     </children>
+                  </Group>
+               </children>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" top="10.0" />
+               </HBox.margin>
+            </AnchorPane>
+            <TextField fx:id="textField" onKeyPressed="#takeText" prefHeight="30.0" prefWidth="320.0" styleClass="menuTextField" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets left="10.0" right="5.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+      </HBox>
    </children>
 </VBox>

@@ -1,9 +1,6 @@
 package org.main;
 
-import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-
 import java.io.IOException;
 
 public class AppInstance {

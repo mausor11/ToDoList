@@ -85,6 +85,13 @@
     -fx-pref-height: 40px;
     -fx-background-radius: 0 10 10 0;
 }
+.listTableDeleted {
+    -fx-background-color: #352525;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-pref-height: 40px;
+    -fx-background-radius: 0 10 10 0;
+}
 .taskBox {
     -fx-background-color: #383838;
     -fx-background-radius: 10;
@@ -92,6 +99,11 @@
 }
 .listBox {
     -fx-background-color: #383838;
+    -fx-background-radius: 10;
+    -fx-pref-height: 40px;
+}
+.listBoxDeleted {
+    -fx-background-color: #352525;
     -fx-background-radius: 10;
     -fx-pref-height: 40px;
 }
@@ -158,4 +170,20 @@
 }
 .menuList .scroll-bar .thumb {
     -fx-background-color: rgba(180, 135, 21, 0.2);
+}
+.backgroundImage {
+    -fx-background-color: #232323;
+    -fx-alignment: center;
+    -fx-background-radius: 5;
+}
+.backgroundImage:hover {
+    -fx-background-color: #3a2c2c;
+}
+.backgroundImageDetected {
+    -fx-background-color: red;
+    -fx-alignment: center;
+    -fx-background-radius: 5;
+}
+.backgroundImageDetected:hover {
+    -fx-background-color: #fd4343;
 }

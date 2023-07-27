@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
@@ -22,6 +23,8 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.time.LocalTime;
 import java.util.ArrayList;
+
+import static org.main.MenuController.isContainerDisable;
 
 public class Controller {
     @FXML
@@ -58,15 +61,48 @@ public class Controller {
     Circle checkCircle;
 
     DataBase dataBase = new DataBase();
-    ArrayList<String> doneTasks = dataBase.getOnlyDone();
-    ArrayList<String> waitingTasks = dataBase.getOnlyWaiting();
-    ArrayList<String> allTasks = dataBase.getAll();
+    ArrayList<String> allTables = dataBase.getAllTables();
+    ArrayList<String> doneTasks = dataBase.getOnlyDone(allTables.get(0));
+    ArrayList<String> waitingTasks = dataBase.getOnlyWaiting(allTables.get(0));
+    ArrayList<String> allTasks = dataBase.getAll(allTables.get(0));
     int doneNum = doneTasks.size();
     int waitNum = waitingTasks.size();
     private boolean doneIsClicked = false;
     private boolean waitingIsClicked = true;
     public void initialize() throws IOException {
+
+        Main.menuAddedBoolean.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.equals("true")) {
+                menuButton.setOpacity(0);
+                menuButton.setDisable(true);
+            } else {
+                menuButton.setOpacity(1);
+                menuButton.setDisable(false);
+            }
+        });
+
         menuButton.setText("☰");
+        title.setText(allTables.get(0));
+        MenuController.newTitle.setText(allTables.get(0));
+        MenuController.newTitle.textProperty().addListener((observable, oldValue, newValue) -> {
+            title.setText(newValue);
+            doneTasks = dataBase.getOnlyDone(newValue);
+            waitingTasks = dataBase.getOnlyWaiting(newValue);
+            allTasks = dataBase.getAll(newValue);
+            doneNum = doneTasks.size();
+            waitNum = waitingTasks.size();
+            yesNum.setText(doneNum + "");
+            noNum.setText(waitNum + "");
+            doneIsClicked = false;
+            waitingIsClicked = true;
+            taskList.getItems().clear();
+            for(String s : waitingTasks) {
+                HBox task = task(s);
+                taskList.getItems().add(task);
+            }
+        });
+
+
         header.widthProperty().addListener((observable, oldValue, newValue) -> {
             title.setPrefWidth(newValue.doubleValue() - 120);
         });
@@ -111,7 +147,13 @@ public class Controller {
             HBox task = task(s);
             taskList.getItems().add(task);
         }
-
+        isContainerDisable.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.equals("true")) {
+                container.setDisable(true);
+            } else {
+                container.setDisable(false);
+            }
+        });
 
 
     }
@@ -172,7 +214,7 @@ public class Controller {
         });
         circleCheck.setOnMouseClicked(e -> {
             taskList.getItems().remove(taskBox);
-            dataBase.doneTask(task);
+            dataBase.doneTask(title.getText(), task);
             doneNum++;
             waitNum--;
             yesNum.setText(doneNum + "");
@@ -222,7 +264,7 @@ public class Controller {
         if((keyEvent.getCode() == KeyCode.ENTER) && (!textField.getText().isEmpty())) {
             HBox task = task(textField.getText());
             taskList.getItems().add(task);
-            dataBase.insertTask(textField.getText());
+            dataBase.insertTask(title.getText(), textField.getText());
             textField.clear();
             waitNum++;
             noNum.setText(waitNum + "");
@@ -232,7 +274,7 @@ public class Controller {
     public void showDone(MouseEvent mouseEvent) {
         if(!doneIsClicked) {
             taskList.getItems().clear();
-            doneTasks = dataBase.getOnlyDone();
+            doneTasks = dataBase.getOnlyDone(title.getText());
             for(String s : doneTasks) {
                 HBox task = taskDone(s);
                 taskList.getItems().add(task);
@@ -255,7 +297,7 @@ public class Controller {
     public void showWaiting(MouseEvent mouseEvent) {
         if(!waitingIsClicked) {
             taskList.getItems().clear();
-            waitingTasks = dataBase.getOnlyWaiting();
+            waitingTasks = dataBase.getOnlyWaiting(title.getText());
             for(String s : waitingTasks) {
                 HBox task = task(s);
                 taskList.getItems().add(task);
@@ -276,18 +318,33 @@ public class Controller {
 
     }
 
-    public void showMenu(MouseEvent mouseEvent) throws IOException {
+    public void showMenu() throws IOException {
 
         BoxBlur boxBlur = new BoxBlur();
         boxBlur.setWidth(10);
         boxBlur.setHeight(10);
         boxBlur.setIterations(1);
-
         ColorAdjust colorAdjust = new ColorAdjust();
         colorAdjust.setBrightness(-0.2);
         boxBlur.setInput(colorAdjust);
         MainViewInstance.getView().setEffect(boxBlur);
-            AppInstance.getApp().getChildren().add(MenuSingleton.getMenu());
+        AppInstance.getApp().getChildren().add(MenuSingleton.getMenu());
+        isContainerDisable.setText("true");
+
+        AppInstance.getApp().setOnMouseClicked(e -> {
+            try {
+                if(!MenuSingleton.getMenu().contains(e.getX(), e.getY())) {
+                    AppInstance.getApp().getChildren().remove(MenuSingleton.getMenu());
+                    MainViewInstance.getView().setEffect(null);
+                    isContainerDisable.setText("false");
+                }
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+
+
     }
 }
 

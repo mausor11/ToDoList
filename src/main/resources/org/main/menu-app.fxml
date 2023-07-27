@@ -5,25 +5,50 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <VBox fx:id="menuApp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="250.0" styleClass="menuApp" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.MenuController">
    <children>
-      <Label fx:id="menuButtonOn" alignment="CENTER" onMouseClicked="#closeMenu" styleClass="menuButtonOn" text="☰">
-         <padding>
-            <Insets left="7.0" right="7.0" />
-         </padding>
-         <font>
-            <Font size="25.0" />
-         </font>
+      <GridPane>
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="-Infinity" minHeight="30.0" prefHeight="30.0" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="menuButtonOn" alignment="CENTER" onMouseClicked="#closeMenu" styleClass="menuButtonOn" text="☰">
+               <font>
+                  <Font size="25.0" />
+               </font>
+               <padding>
+                  <Insets left="7.0" right="7.0" />
+               </padding>
+            </Label>
+            <AnchorPane fx:id="backgroundImage" onMouseClicked="#deleteMode" prefHeight="30.0" prefWidth="20.0" styleClass="backgroundImage" GridPane.columnIndex="1">
+               <children>
+                  <ImageView fx:id="imageBin" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0">
+                     <image>
+                        <Image url="@bin_icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
          <VBox.margin>
-            <Insets left="11.0" top="15.0" />
+            <Insets left="10.0" right="10.0" top="10.0" />
          </VBox.margin>
-      </Label>
+      </GridPane>
       <ListView fx:id="listList" styleClass="menuList" VBox.vgrow="ALWAYS">
          <VBox.margin>
             <Insets top="10.0" />

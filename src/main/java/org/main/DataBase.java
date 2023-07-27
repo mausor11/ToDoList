@@ -21,8 +21,8 @@ public class DataBase {
             throw new RuntimeException(e);
         }
     }
-    public void insertTask(String task) {
-        String sql = "INSERT INTO toDoList(task, done) VALUES (?, ?)";
+    public void insertTask(String table, String task) {
+        String sql = "INSERT INTO [" + table + "](task, done) VALUES (?, ?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, task);
@@ -36,7 +36,30 @@ public class DataBase {
         }
     }
     public void createNewList(String list) {
-        String sql = "CREATE TABLE " + list + "(id_list INT PRIMARY KEY, task TEXT(100), done INT DEFAULT 0)";
+        String sql = "CREATE TABLE [" + list + "](task TEXT(100), done INT DEFAULT 0)";
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void deleteTables(ArrayList<String> tables) {
+        for(String table : tables) {
+            String sql = "DROP TABLE [" + table + "]";
+            try {
+                Statement statement = connection.createStatement();
+                statement.execute(sql);
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public void doneTask(String table, String doneTask) {
+        String sql = "UPDATE [" + table +  "] SET done = '1' WHERE task = \'" + doneTask + "'";
         try {
             Statement statement = connection.createStatement();
             statement.execute(sql);
@@ -44,17 +67,8 @@ public class DataBase {
             throw new RuntimeException(e);
         }
     }
-    public void doneTask(String doneTask) {
-        String sql = "UPDATE toDoList SET done = '1' WHERE task = \'" + doneTask + "'";
-        try {
-            Statement statement = connection.createStatement();
-            statement.execute(sql);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    public void deleteAll() {
-        String sql = "DELETE FROM toDoList";
+    public void deleteAll(String table) {
+        String sql = "DELETE FROM [" + table + "]";
         Statement statement = null;
         try {
             statement = connection.createStatement();
@@ -64,10 +78,10 @@ public class DataBase {
             throw new RuntimeException(e);
         }
     }
-    public ArrayList<String> getAll() {
+    public ArrayList<String> getAll(String table) {
         try {
             ArrayList<String> tasks = new ArrayList<>();
-            String sql = "SELECT * FROM toDoList";
+            String sql = "SELECT * FROM [" + table + "]";
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             while(resultSet.next()) {
@@ -78,10 +92,10 @@ public class DataBase {
             throw new RuntimeException(e);
         }
     }
-    public ArrayList<String> getOnlyDone() {
+    public ArrayList<String> getOnlyDone(String table) {
         try {
             ArrayList<String> tasks = new ArrayList<>();
-            String sql = "SELECT t.* FROM toDoList t WHERE t.done = 1";
+            String sql = "SELECT t.* FROM [" + table + "] t WHERE t.done = 1";
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             while(resultSet.next()) {
@@ -92,10 +106,10 @@ public class DataBase {
             throw new RuntimeException(e);
         }
     }
-    public ArrayList<String> getOnlyWaiting() {
+    public ArrayList<String> getOnlyWaiting(String table) {
         try {
             ArrayList<String> tasks = new ArrayList<>();
-            String sql = "SELECT t.* FROM toDoList t WHERE t.done = 0";
+            String sql = "SELECT t.* FROM [" + table + "] t WHERE t.done = 0";
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             while(resultSet.next()) {
@@ -118,8 +132,8 @@ public class DataBase {
             throw new RuntimeException(e);
         }
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         DataBase dataBase = new DataBase();
-        dataBase.getAllTables();
+        dataBase.createNewList("table1");
     }
 }

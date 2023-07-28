@@ -20,21 +20,25 @@
    <children>
       <GridPane>
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="80.0" prefWidth="100.0" />
           <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="-Infinity" minHeight="30.0" prefHeight="30.0" />
         </rowConstraints>
          <children>
-            <Label fx:id="menuButtonOn" alignment="CENTER" onMouseClicked="#closeMenu" styleClass="menuButtonOn" text="☰">
-               <font>
-                  <Font size="25.0" />
-               </font>
-               <padding>
-                  <Insets left="7.0" right="7.0" />
-               </padding>
-            </Label>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="menuButtonOn" alignment="CENTER" onMouseClicked="#closeMenu" styleClass="menuButtonOn" text="☰">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <padding>
+                        <Insets left="7.0" right="7.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </AnchorPane>
             <AnchorPane fx:id="backgroundImage" onMouseClicked="#deleteMode" prefHeight="30.0" prefWidth="20.0" styleClass="backgroundImage" GridPane.columnIndex="1">
                <children>
                   <ImageView fx:id="imageBin" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0">
@@ -51,25 +55,25 @@
       </GridPane>
       <ListView fx:id="listList" styleClass="menuList" VBox.vgrow="ALWAYS">
          <VBox.margin>
-            <Insets top="10.0" />
+            <Insets left="2.0" right="2.0" top="10.0" />
          </VBox.margin>
       </ListView>
-      <HBox alignment="CENTER_LEFT" prefHeight="30.0" style="-fx-background-color: #383838; -fx-background-radius: 10;">
+      <HBox fx:id="textFieldBox" alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="230.0" style="-fx-background-color: #383838; -fx-background-radius: 10;" VBox.vgrow="ALWAYS">
          <children>
             <AnchorPane prefHeight="60.0" prefWidth="30.0" style="-fx-background-color: #383838;">
                <children>
-                  <Group fx:id="checkCross" layoutX="12.0" layoutY="1.0" styleClass="groupCross">
+                  <Group fx:id="checkCross" layoutX="14.0" layoutY="2.0" styleClass="groupCross">
                      <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="15.0" stroke="BLACK" strokeType="INSIDE" styleClass="cross" width="2.0" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="15.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" styleClass="cross" width="2.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" stroke="BLACK" strokeType="INSIDE" styleClass="cross" width="2.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" styleClass="cross" width="2.0" />
                      </children>
                   </Group>
                </children>
                <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" top="10.0" />
+                  <Insets bottom="11.0" left="10.0" top="11.0" />
                </HBox.margin>
             </AnchorPane>
-            <TextField fx:id="textField" onKeyPressed="#takeText" prefHeight="30.0" prefWidth="320.0" styleClass="menuTextField" HBox.hgrow="ALWAYS">
+            <TextField fx:id="textField" onKeyPressed="#takeText" prefHeight="40.0" prefWidth="320.0" styleClass="menuTextField" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets left="10.0" right="5.0" />
                </HBox.margin>

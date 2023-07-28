@@ -32,19 +32,34 @@ public class Main extends Application {
             if(newValue.doubleValue() > 1000.0) {
                 vbox.setPrefWidth(newValue.doubleValue() - 250.0);
                 vbox.setLayoutX(250.0);
+                if(MenuController.isMenuOn) {
+                    try {
+                        AppInstance.getApp().getChildren().remove(MenuSingleton.getMenu());
+                        MainViewInstance.getView().setEffect(null);
+                        MenuController.isMenuOn = false;
+                        MenuController.isContainerDisable.setText("false");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
                 if(!menuAdded) {
                     if(!pane.getChildren().contains(vboxMenu)) {
                         pane.getChildren().add(vboxMenu);
                         menuAdded = true;
                         menuAddedBoolean.setText("true");
                     }
-
                 }
                 vboxMenu.setLayoutX(0.0);
             } else {
+                if(menuAdded) {
+                    if(pane.getChildren().contains(vboxMenu)) {
+                        pane.getChildren().remove(vboxMenu);
+                        menuAdded = false;
+                        menuAddedBoolean.setText("false");
+                    }
+                }
                 vbox.setPrefWidth(newValue.doubleValue());
                 vbox.setLayoutX(0.0);
-//                pane.getChildren().remove(vboxMenu);
                 menuAdded = false;
                 menuAddedBoolean.setText("false");
             }

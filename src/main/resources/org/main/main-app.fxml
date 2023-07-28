@@ -34,9 +34,14 @@
             <Label fx:id="title" alignment="CENTER" prefHeight="80.0" prefWidth="280.0" styleClass="title" text="title" HBox.hgrow="ALWAYS" />
             <AnchorPane prefHeight="80.0" prefWidth="60.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Circle fill="DODGERBLUE" layoutX="30.0" layoutY="40.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" styleClass="clockFace" />
-                  <Rectangle fx:id="secondHand" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="20.0" layoutX="28.0" layoutY="20.0" stroke="BLACK" strokeType="INSIDE" styleClass="secondHand" width="4.0" />
-                  <Rectangle fx:id="hourHand" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="14.0" layoutX="28.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" styleClass="hourHand" width="4.0" />
+                  <Group fx:id="clockView" layoutX="30.0" layoutY="40.0">
+                     <children>
+                        <Circle fill="DODGERBLUE" radius="26.0" stroke="BLACK" strokeType="INSIDE" styleClass="clockFace" />
+                        <Rectangle fx:id="secondHand" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="22.0" layoutX="-2.0" layoutY="-20.0" rotate="180.0" stroke="BLACK" strokeType="INSIDE" styleClass="secondHand" width="4.0" />
+                        <Rectangle fx:id="hourHand" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="16.0" layoutX="-2.0" layoutY="-14.0" rotate="180.0" stroke="BLACK" strokeType="INSIDE" styleClass="hourHand" width="4.0" />
+                        <Circle fx:id="clock" fill="DODGERBLUE" onMouseClicked="#showPomodoro" opacity="0.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" styleClass="clockFace" />
+                     </children>
+                  </Group>
                </children>
                <HBox.margin>
                   <Insets right="10.0" />

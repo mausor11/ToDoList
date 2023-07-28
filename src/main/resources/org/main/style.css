@@ -68,7 +68,7 @@
 .menuTextField {
     -fx-background-color: #383838;
     -fx-text-fill: white;
-    -fx-font-size: 12px;
+    -fx-font-size: 14px;
 }
 .taskTable {
     -fx-background-color: #383838;

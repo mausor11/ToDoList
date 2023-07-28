@@ -1,5 +1,8 @@
 package org.main;
 
+import javafx.animation.Interpolator;
+import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -12,6 +15,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -30,15 +34,17 @@ public class MenuController {
     AnchorPane backgroundImage;
     @FXML
     Label menuButtonOn;
+    @FXML
+    HBox textFieldBox;
     DataBase dataBase = new DataBase();
     ArrayList<String> allTables = dataBase.getAllTables();
     private ArrayList<String> tablesToDelete;
     public static Label newTitle = new Label();
-    public static Label isContainerDisable = new Label();
+    public static Label isContainerDisable = new Label("false");
     private boolean deleteMode = false;
+    public static boolean isMenuOn = false;
     private long toDelete = 0;
     public void initialize() throws IOException {
-
         Main.menuAddedBoolean.textProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue.equals("true")) {
                 menuButtonOn.setOpacity(0);
@@ -46,6 +52,8 @@ public class MenuController {
             } else {
                 menuButtonOn.setOpacity(1);
                 menuButtonOn.setDisable(false);
+
+
             }
         });
 
@@ -72,6 +80,7 @@ public class MenuController {
         AppInstance.getApp().getChildren().remove(MenuSingleton.getMenu());
         MainViewInstance.getView().setEffect(null);
         isContainerDisable.setText("false");
+        isMenuOn = false;
     }
 
      public void takeText(KeyEvent keyEvent) throws SQLException {

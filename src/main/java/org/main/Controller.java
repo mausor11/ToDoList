@@ -3,6 +3,7 @@ package org.main;
 import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.geometry.Point3D;
 import javafx.scene.Group;
 import javafx.scene.control.*;
 import javafx.scene.effect.BoxBlur;
@@ -59,6 +60,10 @@ public class Controller {
     Group checkCross;
     @FXML
     Circle checkCircle;
+    @FXML
+    Circle clock;
+    @FXML
+    Group clockView;
 
     DataBase dataBase = new DataBase();
     ArrayList<String> allTables = dataBase.getAllTables();
@@ -114,8 +119,8 @@ public class Controller {
             }
         });
         LocalTime now = LocalTime.now();
-        Rotate minuteRotate = new Rotate(0, 2, 20);
-        Rotate hourRotate = new Rotate(0, 2, 14);
+        Rotate minuteRotate = new Rotate(0, 2, 2);
+        Rotate hourRotate = new Rotate(0, 2, 2);
         secondHand.getTransforms().add(minuteRotate);
         hourHand.getTransforms().add(hourRotate);
         yesNum.setText(doneNum + "");
@@ -128,7 +133,6 @@ public class Controller {
         checkCross.setOpacity(1);
         textField.setText("Add task");
         textField.setStyle("-fx-text-fill: #FFB600");
-
         textField.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue) {
                 checkCircle.setOpacity(1);
@@ -147,15 +151,13 @@ public class Controller {
             HBox task = task(s);
             taskList.getItems().add(task);
         }
-        isContainerDisable.textProperty().addListener((observable, oldValue, newValue) -> {
+        MenuController.isContainerDisable.textProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue.equals("true")) {
                 container.setDisable(true);
             } else {
                 container.setDisable(false);
             }
         });
-
-
     }
     private Timeline createRotateTimeline(Duration duration, int startAngle, Rotate rotate) {
         Timeline timeline = new Timeline(1);
@@ -319,7 +321,7 @@ public class Controller {
     }
 
     public void showMenu() throws IOException {
-
+        MenuController.isMenuOn = true;
         BoxBlur boxBlur = new BoxBlur();
         boxBlur.setWidth(10);
         boxBlur.setHeight(10);
@@ -329,14 +331,20 @@ public class Controller {
         boxBlur.setInput(colorAdjust);
         MainViewInstance.getView().setEffect(boxBlur);
         AppInstance.getApp().getChildren().add(MenuSingleton.getMenu());
-        isContainerDisable.setText("true");
 
+        TranslateTransition translateTransition = new TranslateTransition(Duration.millis(150), MenuSingleton.getMenu());
+        translateTransition.setInterpolator(Interpolator.EASE_OUT);
+        translateTransition.setFromX(-268);
+        translateTransition.setToX(0);
+        translateTransition.play();
+
+        MenuController.isContainerDisable.setText("true");
         AppInstance.getApp().setOnMouseClicked(e -> {
             try {
                 if(!MenuSingleton.getMenu().contains(e.getX(), e.getY())) {
                     AppInstance.getApp().getChildren().remove(MenuSingleton.getMenu());
                     MainViewInstance.getView().setEffect(null);
-                    isContainerDisable.setText("false");
+                    MenuController.isContainerDisable.setText("false");
                 }
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
@@ -344,6 +352,15 @@ public class Controller {
         });
 
 
+
+    }
+
+    public void showPomodoro() {
+        RotateTransition rotateTransition = new RotateTransition(Duration.millis(500), clockView);
+        rotateTransition.setInterpolator(Interpolator.EASE_IN);
+        rotateTransition.setAxis(new Point3D(0,1,0));
+        rotateTransition.setByAngle(360);
+        rotateTransition.play();
 
     }
 }

@@ -15,7 +15,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
@@ -24,8 +23,6 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.time.LocalTime;
 import java.util.ArrayList;
-
-import static org.main.MenuController.isContainerDisable;
 
 public class Controller {
     @FXML
@@ -331,13 +328,11 @@ public class Controller {
         boxBlur.setInput(colorAdjust);
         MainViewInstance.getView().setEffect(boxBlur);
         AppInstance.getApp().getChildren().add(MenuSingleton.getMenu());
-
         TranslateTransition translateTransition = new TranslateTransition(Duration.millis(150), MenuSingleton.getMenu());
         translateTransition.setInterpolator(Interpolator.EASE_OUT);
         translateTransition.setFromX(-268);
         translateTransition.setToX(0);
         translateTransition.play();
-
         MenuController.isContainerDisable.setText("true");
         AppInstance.getApp().setOnMouseClicked(e -> {
             try {
@@ -350,9 +345,6 @@ public class Controller {
                 throw new RuntimeException(ex);
             }
         });
-
-
-
     }
 
     public void showPomodoro() {

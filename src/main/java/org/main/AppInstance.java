@@ -6,7 +6,7 @@ import java.io.IOException;
 public class AppInstance {
     private static Pane app;
     private static AppInstance instance;
-    private AppInstance() throws IOException {
+    private AppInstance() {
         app = new Pane();
     }
     public static Pane getApp() throws IOException {
